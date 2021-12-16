@@ -17,13 +17,6 @@ jobs:
         shell: bash
 
     steps:
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v0.4.0'
-      with:
-        workload_identity_provider: 'projects/apthompson/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions-provider'
-        service_account: 'apt-485@apthompson.iam.gserviceaccount.com'
-
     - name: Checkout
       uses: actions/checkout@v2
 
