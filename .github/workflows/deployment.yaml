@@ -32,11 +32,13 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform
+      working-directory: ./terraform
       run: |
-        terraform -chdir=terraform init
+        terraform init
         terraform fmt -check -recursive
-        terraform -chdir=terraform plan
+        terraform plan
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform -chdir=terraform apply -auto-approve
+      working-directory: ./terraform
+      run: terraform apply -auto-approve
