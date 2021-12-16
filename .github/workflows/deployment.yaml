@@ -33,9 +33,9 @@ jobs:
 
     - name: Terraform
       run: |
-        terraform init -chdir=terraform
+        terraform -chdir=terraform init
         terraform fmt -check -recursive
-        terraform plan -chdir=terraform
+        terraform -chdir=terraform plan
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
