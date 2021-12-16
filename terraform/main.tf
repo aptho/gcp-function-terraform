@@ -1,6 +1,6 @@
 locals {
   timestamp = formatdate("YYMMDDhhmmss", timestamp())
-  root_dir = abspath("../src")
+  root_dir  = abspath("../src")
 }
 
 data "archive_file" "source" {
