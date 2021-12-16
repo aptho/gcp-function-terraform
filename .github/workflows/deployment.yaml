@@ -18,7 +18,6 @@ jobs:
 
     steps:
     - name: Setup GCP Service Account
-      working-directory: ./terraform
       uses: google-github-actions/setup-gcloud@master
       with:
         version: 'latest'
@@ -33,13 +32,11 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform
-      working-directory: ./terraform
       run: |
-        terraform init
+        terraform init -chdir=terraform
         terraform fmt -check -recursive
-        terraform plan
+        terraform plan -chdir=terraform
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      working-directory: ./terraform
-      run: terraform apply -auto-approve
+      run: terraform -chdir=terraform apply -auto-approve
